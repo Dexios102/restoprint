@@ -4,18 +4,27 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --port 4001 --host",
+    "dev": "nuxt dev --port 4002 --host",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "refresh": "yarn generate && npx cap sync",
+    "ios": "npx cap open ios",
+    "android": "npx cap open android"
   },
   "dependencies": {
+    "@awesome-cordova-plugins/core": "^6.15.0",
+    "@awesome-cordova-plugins/star-prnt": "^6.15.0",
     "@capacitor/android": "^7.1.0",
     "@capacitor/cli": "^7.1.0",
     "@capacitor/core": "^7.1.0",
+    "@capacitor/ios": "^7.1.0",
+    "@ionic-native/star-prnt": "^5.36.0",
     "capacitor-print": "^0.0.2",
+    "cordova-plugin-starprnt": "^2.2.0",
     "nuxt": "^3.16.0",
     "print-js": "^1.6.0",
+    "rxjs": "^7.8.2",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   }

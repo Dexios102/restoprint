@@ -10,6 +10,20 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
+"@awesome-cordova-plugins/core@^6.15.0":
+  version "6.15.0"
+  resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/core/-/core-6.15.0.tgz#8d420048f48de1d9fc06cafe0f17668574c2b986"
+  integrity sha512-l//EzScEoSPG5tDq5iynCTP9yUtu4riUoYRRfQKkDSEptKRs3qc/eWKvK/QU/JYK7jhbucxz6nHpg8YzElcw8Q==
+  dependencies:
+    "@types/cordova" latest
+
+"@awesome-cordova-plugins/star-prnt@^6.15.0":
+  version "6.15.0"
+  resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/star-prnt/-/star-prnt-6.15.0.tgz#92374c0680f2a2b81cd6127305e75c2aa1a438b0"
+  integrity sha512-ISyqHOYD96T5heMm86P+KowkLbJP6NCZDO82K00/SXLc6113QpPtIEoD49K0WED8Vxb2HPIxq9wPlOj/W6LzaA==
+  dependencies:
+    "@types/cordova" latest
+
 "@babel/code-frame@^7.22.13", "@babel/code-frame@^7.26.2":
   version "7.26.2"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.26.2.tgz#4b5fab97d33338eff916235055f0ebc21e573a85"
@@ -261,6 +275,11 @@
   dependencies:
     tslib "^2.1.0"
 
+"@capacitor/ios@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@capacitor/ios/-/ios-7.1.0.tgz#2b983666bdc74701c9c35f01aada910f48100e12"
+  integrity sha512-ND7GNxtBRnD6Az14D5YRFKFL4VtdLeXE6Zym1SVcKac0NZF18n4DBympBcnfCR61421FCmRlswbpPa9Fr+Czxw==
+
 "@cloudflare/kv-asset-handler@^0.3.4":
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/@cloudflare/kv-asset-handler/-/kv-asset-handler-0.3.4.tgz#5cc152847c8ae4d280ec5d7f4f6ba8c976b585c3"
@@ -414,6 +433,13 @@
   version "0.25.1"
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.25.1.tgz#7d79922cb2d88f9048f06393dbf62d2e4accb584"
   integrity sha512-Y1EQdcfwMSeQN/ujR5VayLOJ1BHaK+ssyk0AEzPjC+t1lITgsnccPqFjb6V+LsTp/9Iov4ysfjxLaGJ9RPtkVg==
+
+"@ionic-native/star-prnt@^5.36.0":
+  version "5.36.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/star-prnt/-/star-prnt-5.36.0.tgz#3f96723dcf68cd1168ec241cc04b2e550b0a1ce7"
+  integrity sha512-Js2imd+q/NMZx0UZNna5EK+44CaCARVfU5fD7JXjEvKHy3YeWP7qdNoWnu77KOWi57E257NEY5ZsrYE84uBg3Q==
+  dependencies:
+    "@types/cordova" latest
 
 "@ionic/cli-framework-output@^2.2.8":
   version "2.2.8"
@@ -1254,6 +1280,11 @@
   dependencies:
     tslib "^2.4.0"
 
+"@types/cordova@latest":
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/@types/cordova/-/cordova-11.0.3.tgz#4301b1c614899c1c99a83aac45914285462201b7"
+  integrity sha512-kyuRQ40/NWQVhqGIHq78Ehu2Bf9Mlg0LhmSmis6ZFJK7z933FRfYi8tHe/k/0fB+PGfCf95rJC6TO7dopaFvAg==
+
 "@types/estree@*", "@types/estree@1.0.6", "@types/estree@^1.0.0":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.6.tgz#628effeeae2064a1b4e79f78e81d87b7e5fc7b50"
@@ -1948,6 +1979,11 @@ copy-anything@^3.0.2:
   integrity sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==
   dependencies:
     is-what "^4.1.8"
+
+cordova-plugin-starprnt@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-starprnt/-/cordova-plugin-starprnt-2.2.0.tgz#a766c90473d2cbbf7dda72c609cb1d5e9c8064c1"
+  integrity sha512-AQBJWkgStXTIfIVazeDjQNEvZr0k3F0JGpNlbXvXErJmRqvp9F8pr/sdT0cK6yJjkUNrYdgLelpc4m8MgEzspw==
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -4280,6 +4316,13 @@ run-parallel@^1.1.9:
   integrity sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==
   dependencies:
     queue-microtask "^1.2.2"
+
+rxjs@^7.8.2:
+  version "7.8.2"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.8.2.tgz#955bc473ed8af11a002a2be52071bf475638607b"
+  integrity sha512-dhKf903U/PQZY6boNNtAGdWbG85WAbjT/1xYoZIC7FAY0yWapOBQVsVrDl58W86//e1VpMNBtRV4MaXfdMySFA==
+  dependencies:
+    tslib "^2.1.0"
 
 safe-buffer@^5.1.0, safe-buffer@~5.2.0:
   version "5.2.1"

@@ -1,5 +1,6 @@
 {
   "appId": "com.example.app",
   "appName": "print-resto",
-  "webDir": ".output/public"
+  "webDir": ".output/public",
+  "bundledWebRuntime": false
 }

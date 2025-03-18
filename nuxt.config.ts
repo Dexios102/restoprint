@@ -6,4 +6,5 @@ export default defineNuxtConfig({
   app: {
     baseURL: './',
   },
+  target: 'static',
 })
