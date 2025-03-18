@@ -8,13 +8,13 @@
     <button @click="showPorts">🖨 {{ loadingPorts ? 'Showing..' : 'Show Available Devices' }}</button>
     <template v-if="ports.length > 0">
       <h5>Available Devices:</h5>
-      <template>
-        <li v-for="port in ports" :key="port.portName">
-          <p>{{ port.modelName }}</p>
+        <div v-for="port in ports" :key="port.portName" style="display: flex; justify-content: space-between; align-items: center;">
+          <span>
+            <p>{{ port.modelName }}</p>
+          </span>
           <button @click="connectToPrinter(port)">{{ port == selectedDevice ? 'Connected' : 'Connect' }}</button>
-        </li>
+        </div>
       </template>
-    </template>
     <h5 v-else-if="ports.length == 0 && !loadingPorts && showPortsTriggered">No connected devices available.</h5>
 
 
