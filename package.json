@@ -16,6 +16,7 @@
     "@awesome-cordova-plugins/core": "^6.15.0",
     "@awesome-cordova-plugins/star-prnt": "^6.15.0",
     "@capacitor/android": "^7.1.0",
+    "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^7.1.0",
     "@capacitor/core": "^7.1.0",
     "@capacitor/ios": "^7.1.0",

@@ -1,6 +1,6 @@
 {
-  "appId": "com.example.app",
-  "appName": "print-resto",
+  "appId": "com.plateful365",
+  "appName": "Plateful365",
   "webDir": ".output/public",
   "bundledWebRuntime": false
 }
