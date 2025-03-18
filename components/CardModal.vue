@@ -2,7 +2,7 @@
    <div class="modal" :class="{ 'is-active': isModalOpen }">
       <div class="modal-content">
         <span class="close-btn" @click="isModalOpen = false">&times;</span>
-        <h2>Modal Title</h2>
+        <h2>Ports Available</h2>
         <pre>{{ ports }}</pre>
       </div>
     </div>
