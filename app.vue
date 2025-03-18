@@ -29,6 +29,11 @@
       <pre>{{ connectionResult }}</pre>
     </template>
 
+    <template v-if="statusResult">
+      <h5>Printer Status Result</h5>
+      <pre>{{ statusResult }}</pre>
+    </template>
+
     <template v-if="printResult">
       <h5>Print Result</h5>
       <pre>{{ printResult }}</pre>
@@ -49,6 +54,7 @@ let emulation = 'StarPRNT';
 
 const connectionResult = ref()
 const printResult = ref()
+const statusResult = ref()
 
 
 
@@ -66,7 +72,7 @@ const showPorts = async () => {
     // Check if any printers were found
     if (ports.value.length === 0) {
       alert('No printers found!');
-    }
+    }    
 
   } catch (error) {
     console.error('Error connecting to printers or printing:', error);
@@ -97,6 +103,7 @@ const handlePrint = async () => {
   };
 
   try {
+    statusResult.value = await StarPRNT.getStatus()
     // Send the print job to the connected printer
     printResult.value = await StarPRNT.printRawText(selectedDevice.value!.portName, emulation, printObj)
   } catch (error) {
