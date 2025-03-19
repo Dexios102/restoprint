@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="printable-content">
-      <h2>Invoice V1.1</h2>
+      <h2>Invoice V1.2</h2>
       <p>Star Clothing Boutique\n123 Star Road\nCity, State 12345</p>
     </div>
 
