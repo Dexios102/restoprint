@@ -10,11 +10,15 @@
     </button>
     <template v-if="ports.length > 0">
       <h5>Available Devices:</h5>
-      <div v-for="port in ports" :key="port.portName" style="
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                ">
+      <div
+        v-for="port in ports"
+        :key="port.portName"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
         <span>
           <p>{{ port.modelName }}</p>
         </span>
@@ -51,13 +55,13 @@
       <h5>Print Result</h5>
       <pre>{{ printResult }}</pre>
     </template>
-
   </div>
 </template>
 
 <script setup lang="ts">
 // reference https://github.com/auctifera-josed/starprnt
 import { StarPRNT } from "@awesome-cordova-plugins/star-prnt";
+import * as Sentry from "@sentry/nuxt";
 
 const ports = ref<Port[]>([]);
 const showPortsTriggered = ref(false);
@@ -71,6 +75,14 @@ const printResult = ref();
 const checkPrinterStatusResult = ref();
 const statusResult = ref();
 
+const parseString = (data: any) => {
+  try {
+    return JSON.stringify(data);
+  } catch (error) {
+    return data;
+  }
+};
+
 const showPorts = async () => {
   try {
     showPortsTriggered.value = true;
@@ -78,16 +90,19 @@ const showPorts = async () => {
     const starprntObj = StarPRNT;
     console.log("StarPRNT:", starprntObj);
 
+    Sentry.captureMessage("StarPRNT", parseString(starprntObj));
+
     // Discover printers available on all ports (Bluetooth, USB, Network)
     ports.value = (await StarPRNT.portDiscovery("All")) as Port[];
     console.log("Port Discovery:", ports);
+    Sentry.captureMessage("StarPRNT", parseString(ports));
 
     // Check if any printers were found
     if (ports.value.length === 0) {
-      alert("No printers found!");
+      Sentry.captureMessage("No printers found!");
     }
   } catch (error) {
-    console.error("Error StarPRNT.portDiscovery:", error);
+    Sentry.captureMessage("Error StarPRNT.portDiscovery:", parseString(error));
   } finally {
     loadingPorts.value = false;
   }
@@ -97,7 +112,10 @@ const connectToPrinter = async (port: Port) => {
   selectedDevice.value = port;
 
   try {
-   checkPrinterStatusResult.value = await StarPRNT.checkStatus(selectedDevice.value!.portName, emulation);
+    checkPrinterStatusResult.value = await StarPRNT.checkStatus(
+      selectedDevice.value!.portName,
+      emulation
+    );
   } catch (error) {
     console.log("Error StarPRNT.checkStatus:", error);
   }
@@ -108,8 +126,8 @@ const handlePrint = async () => {
   statusResult.value = null;
   connectionResult.value = null;
 
-  if(!selectedDevice.value?.portName) {
-    alert("Printer Selected Error: No PortName")
+  if (!selectedDevice.value?.portName) {
+    alert("Printer Selected Error: No PortName");
     return;
   }
 
@@ -144,5 +162,4 @@ const handlePrint = async () => {
     alert("Error StarPRNT.printRawText: " + error);
   }
 };
-
 </script>
