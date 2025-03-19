@@ -37,7 +37,7 @@
       <pre>{{ checkPrinterStatusResult }}</pre>
     </template>
 
-    <template v-if="connectionResult">
+    <!-- <template v-if="connectionResult">
       <h5>Connection Result:</h5>
       <pre>{{ connectionResult }}</pre>
     </template>
@@ -50,7 +50,7 @@
     <template v-if="printResult">
       <h5>Print Result</h5>
       <pre>{{ printResult }}</pre>
-    </template>
+    </template> -->
   </div>
 </template>
 
@@ -137,12 +137,6 @@ const handlePrint = async () => {
     : StarPRNT.Emulation.StarLine;
 
 
-  let printObj = {
-    text: "Star Clothing Boutique\n123 Star Road\nCity, State 12345\n\n",
-    cutReceipt: true, // optional - Defaults to true
-    openCashDrawer: false // optional -Defaults to true
-  }
-
   let rasterObj = {
     text: "        Star Clothing Boutique\n" +
       "             123 Star Road\n" +
@@ -188,19 +182,6 @@ const handlePrint = async () => {
   } catch (error) {
     alert("Error StarPRNT.connect: " + error);
     Sentry.captureMessage("Error StarPRNT.connect:", parseString(error));
-  }
-
-  try {
-    statusResult.value = StarPRNT.getStatus();
-    // Send the print job to the connected printer
-    printResult.value = await StarPRNT.printRawText(
-      selectedDevice.value!.portName,
-      newEmulation,
-      printObj
-    );
-  } catch (error) {
-    alert("Error StarPRNT.printRawText: " + error);
-    Sentry.captureMessage("Error StarPRNT.printRawText:", parseString(error));
   }
 
   try {
