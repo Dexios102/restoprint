@@ -21,6 +21,7 @@
     "@capacitor/core": "^7.1.0",
     "@capacitor/ios": "^7.1.0",
     "@ionic-native/star-prnt": "^5.36.0",
+    "@sentry/nuxt": "^9.6.0",
     "capacitor-print": "^0.0.2",
     "cordova-plugin-starprnt": "^2.2.0",
     "nuxt": "^3.16.0",

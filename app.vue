@@ -51,6 +51,10 @@
       <h5>Print Result</h5>
       <pre>{{ printResult }}</pre>
     </template>
+
+    <h1 @click="handleError">
+  My Website
+</h1>
   </div>
 </template>
 
@@ -142,5 +146,9 @@ const handlePrint = async () => {
   } catch (error) {
     alert("Error StarPRNT.printRawText: " + error);
   }
+};
+
+const handleError = () => {
+  throw new Error("This is a test error");
 };
 </script>
