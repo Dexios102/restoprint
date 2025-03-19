@@ -74,7 +74,7 @@ const showPorts = async () => {
     try {
         showPortsTriggered.value = true;
         loadingPorts.value = true;
-        const starprntObj = await StarPRNT;
+        const starprntObj = StarPRNT;
         console.log("StarPRNT:", starprntObj);
 
         // Discover printers available on all ports (Bluetooth, USB, Network)
@@ -97,7 +97,7 @@ const connectToPrinter = async (port: Port) => {
 
     try {
         // Connect to the selected printer
-        const connection = await StarPRNT.connect(
+        const connection = StarPRNT.connect(
             selectedDevice.value?.portName,
             emulation,
             hasBarcodeReader
@@ -113,11 +113,11 @@ const handlePrint = async () => {
     const printObj = {
         text: "Star Clothing Boutique\n123 Star Road\nCity, State 12345\n\n",
         cutReceipt: true, // This tells the printer to cut the receipt after printing
-        openCashDrawer: true, // This opens the cash drawer (if supported)
+        openCashDrawer: false, // This opens the cash drawer (if supported)
     };
 
     try {
-        statusResult.value = await StarPRNT.getStatus();
+        statusResult.value = StarPRNT.getStatus();
         // Send the print job to the connected printer
         printResult.value = await StarPRNT.printRawText(
             selectedDevice.value!.portName,
