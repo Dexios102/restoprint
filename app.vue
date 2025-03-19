@@ -63,7 +63,7 @@
 import { StarPRNT } from "@awesome-cordova-plugins/star-prnt";
 import * as Sentry from "@sentry/nuxt";
 
-const ports = ref<Port[]>([]);
+const ports = ref<Port[] | []>([]);
 const showPortsTriggered = ref(false);
 const loadingPorts = ref(false);
 const selectedDevice = ref<Port | null>(null);
@@ -93,8 +93,8 @@ const showPorts = async () => {
     // Sentry.captureMessage("StarPRNT", parseString(starprntObj));
 
     // Discover printers available on all ports (Bluetooth, USB, Network)
-    ports.value = (await StarPRNT.portDiscovery("All")) as Port[] || [];
-    console.log("Port Discovery:", ports.value);
+    ports.value = (await StarPRNT.portDiscovery("All") as Port[]);
+    console.log("Port Discovery New:", ports.value);
     Sentry.captureMessage("StarPRNT ports", parseString(ports.value));
 
     // Check if any printers were found
@@ -102,6 +102,7 @@ const showPorts = async () => {
       Sentry.captureMessage("No printers found!");
     }
   } catch (error) {
+    console.log('Error StarPRNT.portDiscovery:', error);
     Sentry.captureMessage("Error StarPRNT.portDiscovery:", parseString(error));
   } finally {
     loadingPorts.value = false;
