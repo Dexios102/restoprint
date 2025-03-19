@@ -52,9 +52,6 @@
       <pre>{{ printResult }}</pre>
     </template>
 
-    <h1 @click="handleError">
-  My Website
-</h1>
   </div>
 </template>
 
@@ -148,7 +145,4 @@ const handlePrint = async () => {
   }
 };
 
-const handleError = () => {
-  throw new Error("This is a test error");
-};
 </script>
