@@ -95,7 +95,7 @@ const showPorts = async () => {
     // Discover printers available on all ports (Bluetooth, USB, Network)
     ports.value = (await StarPRNT.portDiscovery("All")) as Port[];
     console.log("Port Discovery:", ports);
-    Sentry.captureMessage("StarPRNT", parseString(ports));
+    Sentry.captureMessage("StarPRNT ports", parseString(ports));
 
     // Check if any printers were found
     if (ports.value.length === 0) {
@@ -116,8 +116,10 @@ const connectToPrinter = async (port: Port) => {
       selectedDevice.value!.portName,
       emulation
     );
+    Sentry.captureMessage("StarPRNT.checkStatus:", parseString(checkPrinterStatusResult.value));
   } catch (error) {
     console.log("Error StarPRNT.checkStatus:", error);
+    Sentry.captureMessage("Error StarPRNT.checkStatus:", parseString(error));
   }
 };
 
@@ -128,6 +130,7 @@ const handlePrint = async () => {
 
   if (!selectedDevice.value?.portName) {
     alert("Printer Selected Error: No PortName");
+    Sentry.captureMessage("Error no port name when 'Print Now' is clicked");
     return;
   }
 
@@ -146,8 +149,10 @@ const handlePrint = async () => {
       hasBarcodeReader
     );
     connectionResult.value = connection as any;
+    Sentry.captureMessage("StarPRNT.connect:", parseString(connection));
   } catch (error) {
     alert("Error StarPRNT.connect: " + error);
+    Sentry.captureMessage("Error StarPRNT.connect:", parseString(error));
   }
 
   try {
@@ -160,6 +165,7 @@ const handlePrint = async () => {
     );
   } catch (error) {
     alert("Error StarPRNT.printRawText: " + error);
+    Sentry.captureMessage("Error StarPRNT.printRawText:", parseString(error));
   }
 };
 </script>
