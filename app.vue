@@ -10,15 +10,11 @@
     </button>
     <template v-if="ports.length > 0">
       <h5>Available Devices:</h5>
-      <div
-        v-for="port in ports"
-        :key="port.portName"
-        style="
+      <div v-for="port in ports" :key="port.portName" style="
           display: flex;
           justify-content: space-between;
           align-items: center;
-        "
-      >
+        ">
         <span>
           <p>{{ port.modelName }}</p>
         </span>
@@ -74,6 +70,7 @@ const connectionResult = ref();
 const printResult = ref();
 const checkPrinterStatusResult = ref();
 const statusResult = ref();
+const rasterObjResult = ref();
 
 const parseString = (data: any) => {
   try {
@@ -135,18 +132,55 @@ const handlePrint = async () => {
     return;
   }
 
-  // Define the print object
-  const printObj = {
+  let newEmulation = selectedDevice.value!.portName.includes("USB:TSP100")
+    ? StarPRNT.Emulation.StarGraphic
+    : StarPRNT.Emulation.StarLine;
+
+
+  let printObj = {
     text: "Star Clothing Boutique\n123 Star Road\nCity, State 12345\n\n",
-    cutReceipt: true, // This tells the printer to cut the receipt after printing
-    openCashDrawer: false, // This opens the cash drawer (if supported)
+    cutReceipt: true, // optional - Defaults to true
+    openCashDrawer: false // optional -Defaults to true
+  }
+
+  let rasterObj = {
+    text: "        Star Clothing Boutique\n" +
+      "             123 Star Road\n" +
+      "           City, State 12345\n" +
+      "\n" +
+      "Date:MM/DD/YYYY          Time:HH:MM PM\n" +
+      "--------------------------------------\n" +
+      "SALE\n" +
+      "SKU            Description       Total\n" +
+      "300678566      PLAIN T-SHIRT     10.99\n" +
+      "300692003      BLACK DENIM       29.99\n" +
+      "300651148      BLUE DENIM        29.99\n" +
+      "300642980      STRIPED DRESS     49.99\n" +
+      "30063847       BLACK BOOTS       35.99\n" +
+      "\n" +
+      "Subtotal                        156.95\n" +
+      "Tax                               0.00\n" +
+      "--------------------------------------\n" +
+      "Total                          $156.95\n" +
+      "--------------------------------------\n" +
+      "\n" +
+      "Charge\n" +
+      "156.95\n" +
+      "Visa XXXX-XXXX-XXXX-0123\n" +
+      "Refunds and Exchanges\n" +
+      "Within 30 days with receipt\n" +
+      "And tags attached\n",
+    fontSize: 25,       //Defaults to 25
+    paperWidth: 576,    // options: 384 = 2", 576 = 3", 832 = 4"
+    cutReceipt: true, // Defaults to true
+    openCashDrawer: false // Defaults to true
   };
 
   try {
     // Connect to the selected printer
     const connection = StarPRNT.connect(
       selectedDevice.value!.portName,
-      emulation,
+      newEmulation,
       hasBarcodeReader
     );
     connectionResult.value = connection as any;
@@ -161,12 +195,23 @@ const handlePrint = async () => {
     // Send the print job to the connected printer
     printResult.value = await StarPRNT.printRawText(
       selectedDevice.value!.portName,
-      emulation,
+      newEmulation,
       printObj
     );
   } catch (error) {
     alert("Error StarPRNT.printRawText: " + error);
     Sentry.captureMessage("Error StarPRNT.printRawText:", parseString(error));
+  }
+
+  try {
+    rasterObjResult.value = await StarPRNT.printRasterReceipt(
+      selectedDevice.value!.portName,
+      newEmulation,
+      rasterObj
+    );
+  } catch (error) {
+    alert("Error StarPRNT.printRasterReceipt: " + error);
+    Sentry.captureMessage("Error StarPRNT.printRasterReceipt:", parseString(error));
   }
 };
 </script>
