@@ -90,7 +90,7 @@ const showPorts = async () => {
     const starprntObj = StarPRNT;
     console.log("StarPRNT:", starprntObj);
 
-    Sentry.captureMessage("StarPRNT", parseString(starprntObj));
+    // Sentry.captureMessage("StarPRNT", parseString(starprntObj));
 
     // Discover printers available on all ports (Bluetooth, USB, Network)
     ports.value = (await StarPRNT.portDiscovery("All")) as Port[];
